@@ -1,0 +1,185 @@
+[gd_scene load_steps=9 format=3 uid="uid://vw0m3ododvas"]
+
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_fat5v"]
+[ext_resource type="Texture2D" uid="uid://g2soarqv50va" path="res://Assets/giraffe_art/Giraffe_h4.png" id="2_kg30c"]
+[ext_resource type="Texture2D" uid="uid://dxwi1tgkjm66b" path="res://Assets/giraffe_art/Giraffe_h1.png" id="3_2lsgd"]
+[ext_resource type="Texture2D" uid="uid://d31g11f07526j" path="res://Assets/giraffe_art/Giraffe_h2.png" id="4_22ek1"]
+[ext_resource type="Texture2D" uid="uid://bl3c3x1tab52s" path="res://Assets/giraffe_art/Giraffe_h3.png" id="5_yctop"]
+
+[sub_resource type="Animation" id="Animation_rmuny"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_kg30c")]
+}
+
+[sub_resource type="Animation" id="Animation_hffx7"]
+resource_name = "height_change"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_2lsgd"), ExtResource("4_22ek1"), ExtResource("5_yctop"), ExtResource("2_kg30c"), ExtResource("3_2lsgd")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jaupg"]
+_data = {
+"RESET": SubResource("Animation_rmuny"),
+"height_change": SubResource("Animation_hffx7")
+}
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_fat5v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpriteContainer" type="Node2D" parent="."]
+position = Vector2(121, 383)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(4, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kg30c")
+offset = Vector2(100, -145)
+
+[node name="VBoxButtonHolder" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -83.5
+offset_right = 59.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="VBoxButtonHolder"]
+layout_mode = 2
+text = "Play"
+
+[node name="CreditsButton" type="Button" parent="VBoxButtonHolder"]
+layout_mode = 2
+text = "Credits"
+
+[node name="SocialButton" type="Button" parent="VBoxButtonHolder"]
+layout_mode = 2
+text = "Social"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jaupg")
+}
+
+[node name="SocialPanel" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.5
+offset_top = -179.5
+offset_right = 273.5
+offset_bottom = 179.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.8)
+
+[node name="Mastadon" type="Label" parent="SocialPanel"]
+layout_mode = 2
+offset_left = 51.0
+offset_top = 101.0
+offset_right = 496.0
+offset_bottom = 149.0
+text = "Mastadon: @amar_and_stuff"
+horizontal_alignment = 1
+
+[node name="Twitter" type="Label" parent="SocialPanel"]
+layout_mode = 2
+offset_left = 51.0
+offset_top = 153.0
+offset_right = 496.0
+offset_bottom = 201.0
+text = "Twitter: @amarnath_0"
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="SocialPanel"]
+layout_mode = 2
+offset_left = 162.5
+offset_top = 242.5
+offset_right = 393.5
+offset_bottom = 295.5
+text = "Close"
+
+[node name="CreditsPanel" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.5
+offset_top = -146.0
+offset_right = 298.5
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.8)
+
+[node name="BackgroundMusicCredit" type="Label" parent="CreditsPanel"]
+layout_mode = 2
+offset_left = 26.0
+offset_top = 44.0
+offset_right = 573.0
+offset_bottom = 92.0
+text = "Background Music : SubspaceAudio"
+horizontal_alignment = 1
+
+[node name="IdeaCredit" type="Label" parent="CreditsPanel"]
+layout_mode = 2
+offset_left = 26.0
+offset_top = 96.0
+offset_right = 573.0
+offset_bottom = 144.0
+text = "Idea : @LazyAlarm
+"
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="CreditsPanel"]
+layout_mode = 2
+offset_left = 194.0
+offset_top = 196.0
+offset_right = 389.0
+offset_bottom = 249.0
+text = "Close"
+
+[connection signal="pressed" from="VBoxButtonHolder/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxButtonHolder/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxButtonHolder/SocialButton" to="." method="_on_social_button_pressed"]
+[connection signal="pressed" from="SocialPanel/Close" to="." method="_on_social_close_pressed"]
+[connection signal="pressed" from="CreditsPanel/Close" to="." method="_on_credit_close_pressed"]

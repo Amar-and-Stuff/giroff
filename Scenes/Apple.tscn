@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7774k4kkg2n"]
+
+[ext_resource type="Texture2D" uid="uid://b1hxvhylv6i0l" path="res://Assets/collectables/Apple.png" id="1_svx25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbja"]
+size = Vector2(60, 60)
+
+[node name="Apple" type="Node2D"]
+
+[node name="AppleArea" type="Area2D" parent="." groups=["collectables"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="AppleArea"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_svx25")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AppleArea"]
+shape = SubResource("RectangleShape2D_vkbja")

@@ -1,0 +1,170 @@
+[gd_scene load_steps=10 format=3 uid="uid://bapi0x4fka1dy"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_as4i1"]
+[ext_resource type="Texture2D" uid="uid://g2soarqv50va" path="res://Assets/giraffe_art/Giraffe_h4.png" id="2_8r8lq"]
+[ext_resource type="AudioStream" uid="uid://b71wq4y2nppy6" path="res://sfx/bite.wav" id="3_0bfno"]
+[ext_resource type="AudioStream" uid="uid://dq8vbpy13tq7m" path="res://sfx/punch.wav" id="4_e1y8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4igkd"]
+size = Vector2(60, 60)
+
+[sub_resource type="Animation" id="Animation_2oa21"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 385)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pb2gx"]
+resource_name = "die"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 385), Vector2(0, 500), Vector2(0, 620)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_l8xt2"]
+resource_name = "shake"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 385), Vector2(0, 388), Vector2(0, 385), Vector2(0, 387.667), Vector2(0, 387), Vector2(0, 383), Vector2(0, 386), Vector2(0, 387), Vector2(0, 385), Vector2(0, 383), Vector2(0, 385)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s684t"]
+_data = {
+"RESET": SubResource("Animation_2oa21"),
+"die": SubResource("Animation_pb2gx"),
+"shake": SubResource("Animation_l8xt2")
+}
+
+[node name="Player" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_as4i1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 385)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8r8lq")
+offset = Vector2(-120, -145)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4igkd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_s684t")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 26.0
+offset_right = 39.0
+offset_bottom = 76.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="BitePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0bfno")
+volume_db = 10.0
+
+[node name="PunchPlayer" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_e1y8w")
+volume_db = -5.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

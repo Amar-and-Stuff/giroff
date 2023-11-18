@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://3b8213djcc4q"]
+
+[ext_resource type="Script" path="res://Scenes/level.gd" id="1_6bo30"]
+[ext_resource type="PackedScene" uid="uid://clhqu6befcxgk" path="res://Scenes/obstacles.tscn" id="1_b16wu"]
+[ext_resource type="PackedScene" uid="uid://bapi0x4fka1dy" path="res://Scenes/player.tscn" id="2_ja6x2"]
+
+[sub_resource type="Gradient" id="Gradient_kafh3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y8shh"]
+gradient = SubResource("Gradient_kafh3")
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_6bo30")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(18, 10.134)
+texture = SubResource("GradientTexture2D_y8shh")
+centered = false
+
+[node name="Obstacles" parent="." instance=ExtResource("1_b16wu")]
+
+[node name="Player" parent="." instance=ExtResource("2_ja6x2")]
+
+[connection signal="player_dead" from="Player" to="." method="_on_player_player_dead"]

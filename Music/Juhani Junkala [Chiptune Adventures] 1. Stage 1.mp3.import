@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clh6ea3sd8ky5"
+path="res://.godot/imported/Juhani Junkala [Chiptune Adventures] 1. Stage 1.mp3-323f4175a9ed74f9e878af84db759dc8.mp3str"
+
+[deps]
+
+source_file="res://Music/Juhani Junkala [Chiptune Adventures] 1. Stage 1.mp3"
+dest_files=["res://.godot/imported/Juhani Junkala [Chiptune Adventures] 1. Stage 1.mp3-323f4175a9ed74f9e878af84db759dc8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

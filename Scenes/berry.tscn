@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://eqg434sgymwt"]
+
+[ext_resource type="Texture2D" uid="uid://cfepc2tp06h4d" path="res://Assets/collectables/Berry.png" id="1_2am2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5vec"]
+size = Vector2(60, 60)
+
+[node name="Berry" type="Node2D"]
+
+[node name="BerryArea" type="Area2D" parent="." groups=["collectables"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="BerryArea"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_2am2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BerryArea"]
+shape = SubResource("RectangleShape2D_m5vec")

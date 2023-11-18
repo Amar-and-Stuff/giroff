@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dexlk0v0xnv88"]
+
+[ext_resource type="Texture2D" uid="uid://cns0otvpgxiv4" path="res://Assets/collectables/Obstacle.png" id="1_cf362"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5vec"]
+size = Vector2(60, 60)
+
+[node name="Rock" type="Node2D"]
+
+[node name="RockArea" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RockArea"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_cf362")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockArea"]
+shape = SubResource("RectangleShape2D_m5vec")

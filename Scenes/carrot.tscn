@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://fob1wg6im4p"]
+
+[ext_resource type="Texture2D" uid="uid://0yev7rsgeug5" path="res://Assets/collectables/Carrot.png" id="1_q1yhm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5vec"]
+size = Vector2(60, 60)
+
+[node name="Carrot" type="Node2D"]
+
+[node name="CarrotArea" type="Area2D" parent="." groups=["collectables"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="CarrotArea"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_q1yhm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarrotArea"]
+shape = SubResource("RectangleShape2D_m5vec")
